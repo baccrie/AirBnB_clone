@@ -59,7 +59,7 @@ e.g., For models/user.py, unit tests must be in: tests/test_models/test_user.py
 ## Steps for testing the console
 ### 1. Clone the repository with HTTPS:
 ```
-$ git clone https://github.com/lowercaselife/AirBnB_clone.git
+$ git clone https://github.com/baccrie/AirBnB_clone.git
 ```
 ### 2. Go to folder AirBnB_clone
 ```

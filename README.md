@@ -19,7 +19,7 @@ Do you remember the Shell? It’s exactly the same but limited to a specific use
 - Retrieve an object from a file, a database etc…
 - Do operations on objects (count, compute stats, etc…)
 - Update attributes of an object
-- Destroy an object
+- Destroy an object.
 
 ## **Resources**
 Read or watch: [cmd module](https://intranet.hbtn.io/rltoken/Fx9HXIjmGzbmET4ylYg2Rw), [packages](https://intranet.hbtn.io/rltoken/jKl9WFpKA-fPt7_guv9_3Q), [uuid module](https://intranet.hbtn.io/rltoken/eaQ6aELbdqb0WmPddhD00g), [datetime](https://intranet.hbtn.io/rltoken/_ySDcgtfrwLkTyQzYHTH0Q), [unittest module](https://intranet.hbtn.io/rltoken/QX7d4D__xhOJIGIWZBp39g), [args/kwargs](https://intranet.hbtn.io/rltoken/jQd3P_uSO0FeU6jlN-z5mg), [Python test cheatsheet](https://intranet.hbtn.io/rltoken/WPlydsqB0PG0uVcixemv9A)

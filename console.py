@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.all()[key].save()
 
     def do_EOF(self, line):
-        """Handles End Of File character.
+        """Handles End Of File character..
         """
         print()
         return True

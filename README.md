@@ -94,4 +94,4 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 - **EOF** and **quit**: this commands are for exit the console, the EOF is the signal get to press the key combination Ctrl + d
 ```
-(hbnb)quit
+(hbnb)quit..

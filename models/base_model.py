@@ -11,10 +11,19 @@ class BaseModel:
     """""
     The base class for all other classes
     """
-    def __init__(self):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+        if (kwargs) and (kwargs != ""):
+            for key in kwargs:
+                if (key == "__class__"):
+                    pass
+                else:
+                    if (key == "cretaed_at" or key == "updated_at"):
+                        self.__dict__[key] = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
+                    self.__dict__[key] = kwargs[key]
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
         
     def __str__(self):
         """

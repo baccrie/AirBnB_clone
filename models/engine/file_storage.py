@@ -55,6 +55,7 @@ class FileStorage:
                 dict = json.load(f)
                 new_dict = {key: self.classes()[value["__class__"]](**value)\
                 for key, value in dict.items()}
+            FileStorage._objects = new_dict
                 
         else:
             pass

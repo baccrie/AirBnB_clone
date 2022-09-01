@@ -15,11 +15,15 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
     
-    def allClass(self):
+    def classes(self):
         """
         This method is used to import classes
-        from models.base_model import BaseModel
         """
+        from models.base_model import BaseModel
+        
+        classes = {
+            "BaseModel": BaseModel
+        }    
         
     def all(self):
         """
@@ -50,7 +54,7 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 dict = json.load(f)
                 new_dict = {key: self.classes()[value["__class__"]](**value)\
-                for key, value in dict}
+                for key, value in dict.items()}
                 
         else:
             pass

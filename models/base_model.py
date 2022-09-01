@@ -39,7 +39,7 @@ class BaseModel:
         A method that updates the current date and time of an instance when invoked
         """
         self.updated_at = datetime.now()
-        #models.storage.save()
+        models.storage.save()
         
     def to_dict(self):
         """"

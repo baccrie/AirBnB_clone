@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
+import models
 
 
 """"
@@ -8,9 +9,10 @@ A module that contains the base class for all other classes
 """
 
 class BaseModel:
-    """""
+    """
     The base class for all other classes
     """
+    
     def __init__(self, *args, **kwargs):
         if (kwargs) and (kwargs != ""):
             for key in kwargs:
@@ -24,6 +26,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
         
     def __str__(self):
         """
@@ -36,6 +39,7 @@ class BaseModel:
         A method that updates the current date and time of an instance when invoked
         """
         self.updated_at = datetime.now()
+        models.storage.save()
         
     def to_dict(self):
         """"

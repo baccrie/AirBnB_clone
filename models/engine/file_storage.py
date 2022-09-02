@@ -15,16 +15,6 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
     
-    def classes(self):
-        """
-        This method is used to import classes
-        """
-        from models.base_model import BaseModel
-        
-        classes = {
-            "BaseModel": BaseModel
-        }    
-        
     def all(self):
         """
         Returns a dict containing all instance created
@@ -35,7 +25,7 @@ class FileStorage:
         """
         serialises a new instance to the private class attr __objects
         """
-        key = type(self).__name__,obj.id
+        key = type(self).__name__,".",obj.id
         FileStorage.__objects[key] = obj
         
     def save(self):

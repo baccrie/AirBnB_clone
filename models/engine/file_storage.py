@@ -4,6 +4,7 @@
 
 import json
 from models.base_model import BaseModel
+import os
 
 
 class FileStorage:
@@ -13,11 +14,9 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
-
+    
     def all(self):
-        """all method returns dictionary of objects
-        Returns:
-            __objects - dictionary of objects
+        """this method returns dictionary of private class attr objects
         """
         return FileStorage.__objects
 
@@ -37,8 +36,8 @@ class FileStorage:
         with open(FileStorage.__file_path, 'w') as f:
             json.dump(new, f)
 
-    def reload(self):
-        """reload method deserializes the JSON file to __objects"""
+    """def reload(self):
+        reload method deserializes the JSON file to __objects
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 json_dict = json.load(f)
@@ -46,4 +45,19 @@ class FileStorage:
                     cls = obj_dict['__class__']
                     self.new(eval('{}({})'.format(cls, '**obj_dict')))
         except FileNotFoundError:
+            pass
+        """
+        
+    def reload(self):
+        """
+        A method that deserialises file_storage to objects attribute
+        """
+        obj = {}
+        if (os.path.exists(FileStorage.__file_path)):
+            with open(FileStorage.__file_path, "r") as f:
+                obj_conv = json.load(f)
+                for value in obj_conv.values():
+                    cls = value['__class__']
+                    self.new(eval('{}({})'.format(cls, '**value')))
+        else:
             pass

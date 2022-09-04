@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+"""
+A module that splips into an interactive session
+"""
 
 import cmd
 

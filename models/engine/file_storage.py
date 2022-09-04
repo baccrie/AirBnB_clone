@@ -25,7 +25,7 @@ class FileStorage:
         Args:
             obj (object): object to add to dictionary
         """
-        key = f"{type(self).__name__}.{obj.id}"
+        key = f"{type(obj).__name__}.{obj.id}"
         FileStorage.__objects[key] = obj
 
     def save(self):

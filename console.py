@@ -49,6 +49,9 @@ class HBNBCommand(cmd.Cmd):
             print(new.id)
             
     def do_show(self, attr):
+        """
+        Prints the dictionary repr of an object with Class name and id
+        """
         attr = attr.split()
         if (not attr):
             print("** class name missing **")

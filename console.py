@@ -12,13 +12,13 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = "(hbnb) "
     
-    def do_quit(self, attr):
+    def do_quit(self, line):
         """
         Exits the interactive shell session
         """
         return (True)
     
-    def do_EOF(self, attr):
+    def do_EOF(self, line):
         """
         Exits the interactive shell session
         """

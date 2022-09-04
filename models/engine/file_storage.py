@@ -53,7 +53,7 @@ class FileStorage:
         A method that deserialises file_storage to objects attribute
         """
         obj = {}
-        if (os.path.exists(FileStorage.__file_path)):
+        if (os.path.isfile(FileStorage.__file_path)):
             with open(FileStorage.__file_path, "r") as f:
                 obj_conv = json.load(f)
                 for value in obj_conv.values():

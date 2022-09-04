@@ -1,52 +1,91 @@
 #!/usr/bin/python3
-"""Unittest module for the Review Class."""
-
+"""Review unittests"""
 import unittest
-from datetime import datetime
-import time
 from models.review import Review
-import re
-import json
-from models.engine.file_storage import FileStorage
-import os
-from models import storage
-from models.base_model import BaseModel
+import datetime
+import time
 
 
 class TestReview(unittest.TestCase):
+    """class TestReview"""
 
-    """Test Cases for the Review class."""
+    def test_review_class_membership_and_attributes(self):
+        """Review is right class with correct attrs"""
+        review = Review()
+        self.assertIsNotNone(review.id)
+        self.assertIsNotNone(review.created_at)
+        self.assertIsNotNone(review.updated_at)
+        self.assertIsInstance(review, Review)
+        self.assertIsNotNone(review.place_id)
+        self.assertIsNotNone(review.user_id)
+        self.assertIsNotNone(review.text)
 
-    def setUp(self):
-        """Sets up test methods."""
-        pass
+    def test_review_attr_type(self):
+        """Review attributes are correct type"""
+        review = Review()
+        self.assertIsInstance(review.id, str)
+        self.assertEqual(len(review.id), 36)
+        self.assertIsInstance(review.created_at, datetime.datetime)
+        self.assertIsInstance(review.updated_at, datetime.datetime)
+        self.assertIsInstance(review.place_id, str)
+        self.assertIsInstance(review.user_id, str)
+        self.assertIsInstance(review.text, str)
 
-    def tearDown(self):
-        """Tears down test methods."""
-        self.resetStorage()
-        pass
+    def test_review_updated_at_matches_created_at_initialization(self):
+        """Review updated_at is same as create_at"""
+        review = Review()
+        self.assertEqual(review.updated_at, review.created_at)
 
-    def resetStorage(self):
-        """Resets FileStorage data."""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+    def test_review_str_method(self):
+        """Review str method creates accurate representation"""
+        review = Review()
+        review_str = review.__str__()
+        self.assertIsInstance(review_str, str)
+        self.assertEqual(review_str[:8], '[Review]')
+        self.assertEqual(review_str[9:47], '({})'.format(review.id))
+        self.assertDictEqual(eval(review_str[48:]), review.__dict__)
 
-    def test_8_instantiation(self):
-        """Tests instantiation of Review class."""
+    def test_review_save_method(self):
+        """Review save method alters update_at date"""
+        review = Review()
+        time.sleep(0.0001)
+        review.save()
+        self.assertNotEqual(review.updated_at, review.created_at)
 
-        b = Review()
-        self.assertEqual(str(type(b)), "<class 'models.review.Review'>")
-        self.assertIsInstance(b, Review)
-        self.assertTrue(issubclass(type(b), BaseModel))
+    def test_review_to_dict_method(self):
+        """Review to_dict method creates accurate dictionary"""
+        review = Review()
+        review_dict = review.to_dict()
+        self.assertIsInstance(review_dict, dict)
+        self.assertEqual(review_dict['id'], review.id)
+        self.assertEqual(review_dict['__class__'], type(review).__name__)
+        self.assertEqual(
+            review_dict['created_at'], review.created_at.isoformat())
+        self.assertEqual(
+            review_dict['updated_at'], review.updated_at.isoformat())
+        self.assertIsInstance(review.created_at, datetime.datetime)
+        self.assertIsInstance(review.updated_at, datetime.datetime)
 
-    def test_8_attributes(self):
-        """Tests the attributes of Review class."""
-        attributes = storage.attributes()["Review"]
-        o = Review()
-        for k, v in attributes.items():
-            self.assertTrue(hasattr(o, k))
-            self.assertEqual(type(getattr(o, k, None)), v)
+    def test_review_dict_to_instance_with_kwargs(self):
+        """Review can instantiate new object with dictionary"""
+        review = Review()
+        review.name = "Betty"
+        review.number = 972
+        review_dict = review.to_dict()
+        new_review = Review(**review_dict)
+        new_review_dict = new_review.to_dict()
+        self.assertFalse(new_review is review)
+        self.assertDictEqual(new_review_dict, review_dict)
 
-if __name__ == "__main__":
+    def test_review_dict_to_instance_with_empty_kwargs(self):
+        """Review can instantiate new object with empty dict"""
+        review_dict = {}
+        new_review = Review(**review_dict)
+        new_review_dict = new_review.to_dict()
+        self.assertIsInstance(new_review, Review)
+        self.assertIsNotNone(new_review.id)
+        self.assertIsNotNone(new_review.created_at)
+        self.assertIsNotNone(new_review.updated_at)
+
+if __name__ == '__main__':
     unittest.main()

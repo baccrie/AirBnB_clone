@@ -1,52 +1,87 @@
 #!/usr/bin/python3
-"""Unittest module for the Amenity Class."""
-
+"""Amenity unittests"""
 import unittest
-from datetime import datetime
-import time
 from models.amenity import Amenity
-import re
-import json
-from models.engine.file_storage import FileStorage
-import os
-from models import storage
-from models.base_model import BaseModel
+import datetime
+import time
 
 
 class TestAmenity(unittest.TestCase):
+    """class TestAmenity"""
 
-    """Test Cases for the Amenity class."""
+    def test_amenity_class_membership_and_attributes(self):
+        """Amenity is right class with correct attrs"""
+        amenity = Amenity()
+        self.assertIsNotNone(amenity.id)
+        self.assertIsNotNone(amenity.created_at)
+        self.assertIsNotNone(amenity.updated_at)
+        self.assertIsInstance(amenity, Amenity)
+        self.assertIsNotNone(amenity.name)
 
-    def setUp(self):
-        """Sets up test methods."""
-        pass
+    def test_amenity_attr_type(self):
+        """Amenity attributes are correct type"""
+        amenity = Amenity()
+        self.assertIsInstance(amenity.id, str)
+        self.assertEqual(len(amenity.id), 36)
+        self.assertIsInstance(amenity.created_at, datetime.datetime)
+        self.assertIsInstance(amenity.updated_at, datetime.datetime)
+        self.assertIsInstance(amenity.name, str)
 
-    def tearDown(self):
-        """Tears down test methods."""
-        self.resetStorage()
-        pass
+    def test_amenity_updated_at_matches_created_at_initialization(self):
+        """Amenity updated_at is same as create_at"""
+        amenity = Amenity()
+        self.assertEqual(amenity.updated_at, amenity.created_at)
 
-    def resetStorage(self):
-        """Resets FileStorage data."""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+    def test_amenity_str_method(self):
+        """Amenity str method creates accurate representation"""
+        amenity = Amenity()
+        amenity_str = amenity.__str__()
+        self.assertIsInstance(amenity_str, str)
+        self.assertEqual(amenity_str[:9], '[Amenity]')
+        self.assertEqual(amenity_str[10:48], '({})'.format(amenity.id))
+        self.assertDictEqual(eval(amenity_str[49:]), amenity.__dict__)
 
-    def test_8_instantiation(self):
-        """Tests instantiation of Amenity class."""
+    def test_amenity_save_method(self):
+        """Amenity save method alters update_at date"""
+        amenity = Amenity()
+        time.sleep(0.0001)
+        amenity.save()
+        self.assertNotEqual(amenity.updated_at, amenity.created_at)
 
-        b = Amenity()
-        self.assertEqual(str(type(b)), "<class 'models.amenity.Amenity'>")
-        self.assertIsInstance(b, Amenity)
-        self.assertTrue(issubclass(type(b), BaseModel))
+    def test_amenity_to_dict_method(self):
+        """Amenity to_dict method creates accurate dictionary"""
+        amenity = Amenity()
+        amenity_dict = amenity.to_dict()
+        self.assertIsInstance(amenity_dict, dict)
+        self.assertEqual(amenity_dict['id'], amenity.id)
+        self.assertEqual(amenity_dict['__class__'], type(amenity).__name__)
+        self.assertEqual(
+            amenity_dict['created_at'], amenity.created_at.isoformat())
+        self.assertEqual(
+            amenity_dict['updated_at'], amenity.updated_at.isoformat())
+        self.assertIsInstance(amenity.created_at, datetime.datetime)
+        self.assertIsInstance(amenity.updated_at, datetime.datetime)
 
-    def test_8_attributes(self):
-        """Tests the attributes of Amenity class."""
-        attributes = storage.attributes()["Amenity"]
-        o = Amenity()
-        for k, v in attributes.items():
-            self.assertTrue(hasattr(o, k))
-            self.assertEqual(type(getattr(o, k, None)), v)
+    def test_amenity_dict_to_instance_with_kwargs(self):
+        """Amenity can instantiate new object with dictionary"""
+        amenity = Amenity()
+        amenity.name = "Betty"
+        amenity.number = 972
+        amenity_dict = amenity.to_dict()
+        new_amenity = Amenity(**amenity_dict)
+        new_amenity_dict = new_amenity.to_dict()
+        self.assertFalse(new_amenity is amenity)
+        self.assertDictEqual(new_amenity_dict, amenity_dict)
 
-if __name__ == "__main__":
+    def test_amenity_dict_to_instance_with_empty_kwargs(self):
+        """Amenity can instantiate new object with empty dict"""
+        amenity_dict = {}
+        new_amenity = Amenity(**amenity_dict)
+        new_amenity_dict = new_amenity.to_dict()
+        self.assertIsInstance(new_amenity, Amenity)
+        self.assertIsNotNone(new_amenity.id)
+        self.assertIsNotNone(new_amenity.created_at)
+        self.assertIsNotNone(new_amenity.updated_at)
+
+if __name__ == '__main__':
     unittest.main()

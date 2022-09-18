@@ -55,7 +55,8 @@ class FileStorage:
         
     def reload(self):
         """
-        A method that deserialises file_storage to objects attribute
+        A method that deserialises file_storage to objects
+        attribute
         """
         obj = {}
         if (os.path.isfile(FileStorage.__file_path)):

@@ -97,6 +97,9 @@ class HBNBCommand(cmd.Cmd):
          instances based or not on the class name
          """
         attr = attr.split()
+        if (attr and attr[0] not in self.classes):
+            print("** class doesn't exist **")
+            return
         if (not attr):
             obj = [f"{values}" for key, values in storage.all().items()]
         else:

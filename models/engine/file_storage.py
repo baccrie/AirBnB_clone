@@ -37,7 +37,8 @@ class FileStorage:
         """
         A method that serialises the object attr to a file
         """
-        new = {key: value.to_dict() for key, value in FileStorage.__objects.items()}
+        new = {key: value.to_dict() for key, value in /
+        FileStorage.__objects.items()}
         with open(FileStorage.__file_path, 'w') as f:
             json.dump(new, f)
 

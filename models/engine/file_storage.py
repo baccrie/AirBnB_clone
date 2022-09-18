@@ -17,7 +17,7 @@ class FileStorage:
     A class that serialises and deserialises
     an instance of classes generated from BaseModel
     """
-    __file_path = "file.json"
+    __file_path = 'file.json'
     __objects = {}
 
     def all(self):

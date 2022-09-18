@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
         """
         attr = attr.split()
         if not attr:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif attr and attr[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(attr) == 1:
@@ -110,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
         """
         attr = attr.split()
         if not attr:
-            print("** class name is missing **")
+            print("** class name missing **")
         elif attr and attr[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(attr) == 1:

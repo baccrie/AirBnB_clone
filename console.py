@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
         if not attr:
             print("** class name missing **")
         elif attr[0] not in self.classes:
-            print("** class dosen't exist **")
+            print("** class doesn't exist **")
         else:
             new = BaseModel()
             new.save()
@@ -56,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         if (not attr):
             print("** class name missing **")
         elif (attr and attr[0] not in self.classes):
-            print("** class dosent exist **")
+            print("** class doesn't exist **")
         elif (len(attr) == 1):
             print("** instance id missing **")
         elif (attr and attr[1]):
@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
         if not attr:
             print("** class name is missing **")
         elif attr and attr[0] not in self.classes:
-            print("** class dosen't exist **")
+            print("** class doesn't exist **")
         elif len(attr) == 1:
             print("** instance id is missing **")
         elif (attr and attr[1]):
@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
         if not attr:
             print("** class name is missing **")
         elif attr and attr[0] not in self.classes:
-            print("** class dosen't exist **")
+            print("** class doesn't exist **")
         elif len(attr) == 1:
             print("** instance id is missing **")
         elif (attr and attr[1]):

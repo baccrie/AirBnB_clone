@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
         elif attr and attr[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(attr) == 1:
-            print("** instance id is missing **")
+            print("** instance id missing **")
         elif (attr and attr[1]):
             attr_2 = f"{attr[0]}.{attr[1]}"
             if attr_2 not in storage.all().keys():
@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         elif attr and attr[0] not in self.classes:
             print("** class doesn't exist **")
         elif len(attr) == 1:
-            print("** instance id is missing **")
+            print("** instance id missing **")
         elif (attr and attr[1]):
             attr_2 = f"{attr[0]}.{attr[1]}"
             if attr_2 not in storage.all().keys():

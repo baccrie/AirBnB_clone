@@ -5,8 +5,12 @@ A module that splips into an interactive session
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
 from models import storage
-import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
     A class that incorporates a command line interpreter
     """
     prompt = "(hbnb) "
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User", "State", "City", "Amenity", "Place"]
 
     def do_quit(self, line):
         """
@@ -45,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         elif attr[0] not in self.classes:
             print("** class doesn't exist **")
         else:
-            new = BaseModel()
+            new = eval("{}()".format(attr[0]))
             new.save()
             print(new.id)
 

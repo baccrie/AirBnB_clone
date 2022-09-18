@@ -6,6 +6,7 @@ A module that splips into an interactive session
 import cmd
 from models.base_model import BaseModel
 from models import storage
+import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -129,9 +130,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             key = f"{attr[0]}.{attr[1]}"
             obj = storage.all()
-            for keys, values in obj.items():
-                if keys == key:
-                    values[attr[2]] = attr[3]
+            obj[key][attr[2]] = attr[3]
             storage.save()
 
 

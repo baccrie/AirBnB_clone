@@ -100,8 +100,8 @@ class HBNBCommand(cmd.Cmd):
         if (not attr):
             obj = [f"{values}" for key, values in storage.all().items()]
         else:
-            obj = [f"{values}" for key, values in storage.all().items()
-                    \if attr[0] == type(values).__name__]
+            obj = [f"{values}" for key, values in
+                    storage.all().items() if attr[0] == type(values).__name__]
         print(obj)
 
     def do_update(self, attr):

@@ -19,7 +19,7 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = {}
-    
+
     def all(self):
         """this method returns dictionary of private class attr objects
         """
@@ -52,7 +52,7 @@ class FileStorage:
         except FileNotFoundError:
             pass
         """
-        
+
     def reload(self):
         """
         A method that deserialises file_storage to objects

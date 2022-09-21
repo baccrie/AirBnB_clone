@@ -65,13 +65,13 @@ class HBNBCommand(cmd.Cmd):
         elif (len(attr) == 1):
             print("** instance id missing **")
         elif (attr and attr[1]):
-            attr_2 = f"{attr[0]}.{attr[1]}"
+            attr_2 = attr[0],'.',attr[1]
             if attr_2 not in storage.all().keys():
                 print("** no instance found **")
             else:
                 storage.reload()
                 obj = storage.all()
-                attr_2 = f"{attr[0]}.{attr[1]}"
+                attr_2 = attr[0],'.',attr[1]
                 for key, value in obj.items():
                     if key == attr_2:
                         print(value)
@@ -88,11 +88,11 @@ class HBNBCommand(cmd.Cmd):
         elif len(attr) == 1:
             print("** instance id missing **")
         elif (attr and attr[1]):
-            attr_2 = f"{attr[0]}.{attr[1]}"
+            attr_2 = attr[0],'.',attr[1]
             if attr_2 not in storage.all().keys():
                 print("** no instance found **")
             else:
-                key = f"{attr[0]}.{attr[1]}"
+                key = attr[0],'.',attr[1]
                 storage.all().pop(key)
                 storage.save()
 
@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(attr) == 1:
             print("** instance id missing **")
         elif (attr and attr[1]):
-            attr_2 = f"{attr[0]}.{attr[1]}"
+            attr_2 = attr[0],'.',attr[1]
             if attr_2 not in storage.all().keys():
                 print("** no instance found **")
         elif (len(attr) == 2):
@@ -132,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
         elif (len(attr) == 3):
             print("** value missing **")
         else:
-            key = f"{attr[0]}.{attr[1]}"
+            key = attr[0],'.',attr[1]
             obj = storage.all()
             obj[key][attr[2]] = attr[3]
             storage.save()

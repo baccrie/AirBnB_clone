@@ -1,0 +1,11 @@
+header div {
+    background-color: white; 
+    height: 70px; 
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+}
+ header div img {
+    display: block;
+    margin-left: 20px;
+ }

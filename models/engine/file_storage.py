@@ -23,19 +23,26 @@ class FileStorage:
 
     def save(self):
         """Serializez the object attr to file path"""
-        file = FileStorage.__objects
+        """file = FileStorage.__objects
         with open(FileStorage.__file_path, 'w') as f:
             save_to_file = {k: value.to_dict() for k, value in file.items()}
-            json.dump(save_to_file, f)
+            json.dump(save_to_file, f)"""
+        obj_dict = {}
+        for key, obj in self.__objects.items():
+            obj_dict[key] = obj.to_dict()
+
+        json_str = json.dumps(obj_dict)
+
+        with open(self.__file_path, 'w', encoding='utf-8') as f:
+            f.write(json_str)
 
     def reload(self):
         """Reload from storage engine file to an attr"""
-        #if os.path.isfile(FileStorage.__file_path):
-        try:
+        if os.path.isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r') as f:
                 data = json.load(f)
                 for obj_dict in data.values():
                     cls = obj_dict['__class__']
                     self.new(eval('{}({})'.format(cls, '**obj_dict')))
-        except FileNotFoundError:
+        else:
             pass

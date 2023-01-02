@@ -24,14 +24,14 @@ class FileStorage:
     def save(self):
         """Serializez the object attr to file path"""
         file = FileStorage.__objects
-        with open(FileStorage.__file_path, 'w') as f:
+        with open(FileStorage.__file_path, 'w', encoding="utf-8") as f:
             save_to_file = {k: value.to_dict() for k, value in file.items()}
             json.dump(save_to_file, f)
 
     def reload(self):
         """Reload from storage engine file to an attr"""
         if os.path.isfile(FileStorage.__file_path):
-            with open(FileStorage.__file_path, 'r') as f:
+            with open(FileStorage.__file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
                 for obj_dict in data.values():
                     cls = obj_dict['__class__']

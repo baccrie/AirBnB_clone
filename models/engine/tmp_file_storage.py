@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 
 class FileStorage:
     """A class that handles serialization and de-serialization"""
-    __file_path = 'file.json'
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -30,12 +30,11 @@ class FileStorage:
 
     def reload(self):
         """Reload from storage engine file to an attr"""
-        #if os.path.isfile(FileStorage.__file_path):
-        try:
+        if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r') as f:
                 data = json.load(f)
                 for obj_dict in data.values():
                     cls = obj_dict['__class__']
                     self.new(eval('{}({})'.format(cls, '**obj_dict')))
-        except FileNotFoundError:
+        else:
             pass

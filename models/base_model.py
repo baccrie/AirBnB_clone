@@ -15,7 +15,7 @@ class BaseModel:
 
     def __str__(self):
         """Prints the str repr of an object"""
-        ret_value = f"{[type(self).__name__]} {self.id} {self.__dict__}"
+        ret_value = f"{[type(self).__name__]} {(self.id)} {self.__dict__}"
         return (ret_value)
 
     def save(self):

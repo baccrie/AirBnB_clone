@@ -37,4 +37,4 @@ class FileStorage:
                     cls = obj_dict['__class__']
                     self.new(eval('{}({})'.format(cls, '**obj_dict')))
         else:
-            pass
+            return

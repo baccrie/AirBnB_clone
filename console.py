@@ -76,6 +76,9 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** instance id missing **")
         elif len(arg) == 2:
+            if arg[0] not in self.class_names:
+                print("** class dosen't exist **")
+                return
             new = FileStorage()
             new.reload()
             all = new.all()
@@ -140,7 +143,10 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         elif len(arg) == 3:
             print("** value missing **")
-        else:
+        elif len(arg) == 4:
+            if search not in all:
+                print("** no instance found **")
+                return
             obj = new_ins.all()
             for key, value in obj.items():
                 if search == key:

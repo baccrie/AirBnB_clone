@@ -1,29 +1,26 @@
-.places h1 {
-    font-size: 30px;
-    margin-top: 45px;
-    margin-left: 15px;
-    padding: 0;
-    text-align: left;
-    vertical-align: top;
+.places {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 50px;
 }
 
-.row {
+.places h1 {
+    font-size: 30px;
+    width: 100%;
+    margin-left: 20px;
+}
+
+.places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
 }
 
-.article h2 {
+.places article h2 {
     font-size: 30px;
-    text-align: center;
-}
-
-.article {
-    margin: 20px;
-    padding: 20px;
-    width: 390px;
-    border: 1px solid #FF5A5F ;
-    border-radius: 4px;
-    box-sizing: content-box;  
 }

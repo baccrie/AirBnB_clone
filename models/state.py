@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-"""New class inherit from BaseModel"""
+"""
+Class that defines a state
+"""
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """Class State that inherit from BaseModel"""
-
+    """class to create a state"""
     name = ""

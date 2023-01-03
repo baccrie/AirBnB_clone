@@ -16,8 +16,7 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """A Console class that inherits from cmd"""
     prompt = '(hbnb) '
-    class_names = ['BaseModel', 'User']
-    classes = {'BaseModel': BaseModel, 'User': User}
+    class_names = ['BaseModel', 'User', 'State', 'City', 'Place', 'Amenity', 'Review']
 
     def do_EOF(self, line):
         """EOF command to exit the program"""
@@ -44,8 +43,18 @@ class HBNBCommand(cmd.Cmd):
             else:
                 if arg[0] == 'BaseModel':
                     new = BaseModel()
-                elif arg[0]  == 'User':
+                elif arg[0] == 'User':
                     new = User()
+                elif arg[0] == 'State':
+                    new = State()
+                elif arg[0] == 'City':
+                    new = City()
+                elif arg[0] == 'Place':
+                    new = Place()
+                elif arg[0] == 'Amenity':
+                    new = Amenity()
+                elif arg[0] == 'Review':
+                    new = Review()
                 new.save()
                 print(new.id)
 

@@ -12,11 +12,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """Quits the interactive shell safely"""
-        return True
+        exit()
 
     def do_quit(self, line):
         """Exits the interactive session"""
-        return True
+        exit()
 
     def emptyline(self):
         pass

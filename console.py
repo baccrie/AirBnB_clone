@@ -11,11 +11,11 @@ class HBNBCommand(cmd.Cmd):
     intro = 'baccrie copyright © 2022 Doing the hard things sucks'
 
     def do_EOF(self, line):
-        """Quits the interactive shell safely"""
+    """EOF command to exit the program"""
         return True
 
     def do_quit(self, line):
-        """Exits the interactive session"""
+        """Quit command to exit the program"""
         print()
         return True
 

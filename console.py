@@ -11,7 +11,7 @@ class HBNBCommand(cmd.Cmd):
     intro = 'baccrie copyright © 2022 Doing the hard things sucks'
 
     def do_EOF(self, line):
-    """EOF command to exit the program"""
+        """EOF command to exit the program"""
         return True
 
     def do_quit(self, line):

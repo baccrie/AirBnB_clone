@@ -1,0 +1,9 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+p.center_black {
+	color: #000000;
+	text-align: center;
+	padding: 5px;
+}

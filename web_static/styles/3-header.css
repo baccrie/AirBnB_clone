@@ -1,0 +1,12 @@
+header {
+	border-width: 0px 0px 1px 0px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	background-color: white;
+	height: 70px;
+	width: 100%;
+}
+.logo {
+	margin-top: 5px;
+	margin-left: 20px;
+}

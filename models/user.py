@@ -1,13 +1,13 @@
 #!/usr/bin/python3
-"""A magical module"""
-
+"""
+User creation class
+"""
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
-    """A module thah inherits from base Module"""
+    """Defines attributes for user creation"""
     email = ""
     password = ""
     first_name = ""
     last_name = ""
-
-    pass

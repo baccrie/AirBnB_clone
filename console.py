@@ -8,7 +8,7 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """A Console class that inherits from cmd"""
     prompt = '(hbnb) '
-    intro = 'baccrie copyright © 2022 Doing the hard things sucks'
+    #intro = 'baccrie copyright © 2022 Doing the hard things sucks'
 
     def do_EOF(self, line):
         """EOF command to exit the program"""

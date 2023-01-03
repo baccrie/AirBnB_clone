@@ -96,15 +96,14 @@ class HBNBCommand(cmd.Cmd):
         new.reload()
         all = new.all()
         if len(arg) == 0:
-            for key, value in all.items():
-                print(value)
+            tmp = [f"{value}" for key, value in all.items()]
+            print(tmp)
         elif len(arg) == 1:
             if arg[0] not in self.class_names:
                 print("** class doesn't exist **")
                 return
-            for key, value in all.items():
-                if type(value).__name__ == arg[0]:
-                    print(value)
+            tmp = [f"{value}" for key, value in all.items() if type(value).__name__ == arg[0]]
+            print(tmp)
 
     def do_reset(self, line):
         """This method isnt part of the programme
@@ -145,8 +144,7 @@ class HBNBCommand(cmd.Cmd):
             obj = new_ins.all()
             for key, value in obj.items():
                 if search == key:
-                    ar = f"{arg[2]}"
-                    value.ar = arg[3]
+                    setattr(value, arg[2], arg[3])
             new_ins.__objects = obj
             new_ins.save()
 

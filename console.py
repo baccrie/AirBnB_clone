@@ -85,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
             val = all.keys()
             search = f"{arg[0]}.{arg[1]}"
             if (search not in all.keys()):
-                print("** no instance found **")
+                print("** class dosen't exist **")
                 return
             del all[search]
             new.__objects = all

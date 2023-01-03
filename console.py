@@ -57,8 +57,12 @@ class HBNBCommand(cmd.Cmd):
             all = new.all()
             val = all.keys()
             search = f"{arg[0]}.{arg[1]}"
+            if arg[0] not in self.class_names:
+                print("** class doesn't exist **")
+                return
             if (search not in all.keys()):
                 print("** no instance found **")
+                return
             for key, value in all.items():
                 if (key == search):
                     print(value)
@@ -144,6 +148,9 @@ class HBNBCommand(cmd.Cmd):
         elif len(arg) == 3:
             print("** value missing **")
         elif len(arg) == 4:
+            if arg[0] not in self.class_names:
+                print("** class doesn't exist **")
+                return
             if search not in all.keys():
                 print("** class doesn't exist **")
                 return

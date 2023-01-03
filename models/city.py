@@ -6,6 +6,6 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """defines city to look for"""
+    """Inherits from BaseModel and defines city"""
     state_id = ""
     name = ""

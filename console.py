@@ -5,12 +5,19 @@
 import cmd
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """A Console class that inherits from cmd"""
     prompt = '(hbnb) '
-    class_names = ['BaseModel']
+    class_names = ['BaseModel', 'User']
+    classes = {'BaseModel': BaseModel, 'User': User}
 
     def do_EOF(self, line):
         """EOF command to exit the program"""
@@ -35,7 +42,10 @@ class HBNBCommand(cmd.Cmd):
             if arg[0] not in self.class_names:
                 print("** class doesn't exist **")
             else:
-                new = BaseModel()
+                if arg[0] == 'BaseModel':
+                    new = BaseModel()
+                elif arg[0]  == 'User':
+                    new = User()
                 new.save()
                 print(new.id)
 

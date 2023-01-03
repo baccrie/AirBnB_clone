@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-Defines Place class
+Defines Place
 """
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Defines Place class"""
+    """Defines Place"""
     city_id = ""
     user_id = ""
     name = ""

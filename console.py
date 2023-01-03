@@ -18,6 +18,9 @@ class HBNBCommand(cmd.Cmd):
         """Exits the interactive session"""
         return True
 
+    def emptyline(self):
+        pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

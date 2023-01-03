@@ -5,7 +5,7 @@ attributes/methods for other classes:"""
 
 import uuid
 from datetime import datetime
-import models
+#import models
 
 
 class BaseModel:
@@ -38,7 +38,8 @@ class BaseModel:
         return (ret_value)
 
     def save(self):
-        """updates the public instance attribute updated_at"""
+        """updates the public instance attribute updated_at
+    with the current datetime"""
         self.updated_at = datetime.today()
         models.storage.save()
 

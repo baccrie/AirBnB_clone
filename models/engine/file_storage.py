@@ -19,10 +19,14 @@ class FileStorage:
 
     def all(self):
         """Returns the dict objects"""
+        if self.__objects == None:
+            return
         return (FileStorage.__objects)
 
     def new(self, obj):
         """sets an instance to the object attr"""
+        if self.__objects == None:
+            return
         key = f"{type(obj).__name__}.{obj.id}"
         value = obj
         FileStorage.__objects[key] = value

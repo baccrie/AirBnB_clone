@@ -1,45 +1,76 @@
 #!/usr/bin/python3
-"""
-Unittest for user.py
-"""
+"""test for user"""
 import unittest
+import os
 from models.user import User
-import datetime
+from models.base_model import BaseModel
+import pep8
 
 
-class UserCase(unittest.TestCase):
-    """Tests instances and methods from user class"""
+class TestUser(unittest.TestCase):
+    """this will test the User class"""
 
-    u = User()
+    @classmethod
+    def setUpClass(cls):
+        """set up for test"""
+        cls.user = User()
+        cls.user.first_name = "Kevin"
+        cls.user.last_name = "Yook"
+        cls.user.email = "yook00627@gmamil.com"
+        cls.user.password = "secret"
 
-    def test_class_exists(self):
-        """tests if class exists"""
-        self.assertEqual(str(type(self.u)), "<class 'models.user.User'>")
+    @classmethod
+    def teardown(cls):
+        """at the end of the test this will tear it down"""
+        del cls.user
 
-    def test_user_inheritance(self):
-        """test if User is a subclass of BaseModel"""
-        self.assertIsInstance(self.u, User)
+    def tearDown(self):
+        """teardown"""
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
-    def testHasAttributes(self):
-        """verify if attributes exist"""
-        self.assertTrue(hasattr(self.u, 'email'))
-        self.assertTrue(hasattr(self.u, 'password'))
-        self.assertTrue(hasattr(self.u, 'first_name'))
-        self.assertTrue(hasattr(self.u, 'last_name'))
-        self.assertTrue(hasattr(self.u, 'id'))
-        self.assertTrue(hasattr(self.u, 'created_at'))
-        self.assertTrue(hasattr(self.u, 'updated_at'))
+    def test_pep8_User(self):
+        """Tests pep8 style"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/user.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
 
-    def test_types(self):
-        """tests if the type of the attribute is the correct one"""
-        self.assertIsInstance(self.u.first_name, str)
-        self.assertIsInstance(self.u.last_name, str)
-        self.assertIsInstance(self.u.email, str)
-        self.assertIsInstance(self.u.password, str)
-        self.assertIsInstance(self.u.id, str)
-        self.assertIsInstance(self.u.created_at, datetime.datetime)
-        self.assertIsInstance(self.u.updated_at, datetime.datetime)
+    def test_checking_for_docstring_User(self):
+        """checking for docstrings"""
+        self.assertIsNotNone(User.__doc__)
+
+    def test_attributes_User(self):
+        """chekcing if User have attributes"""
+        self.assertTrue('email' in self.user.__dict__)
+        self.assertTrue('id' in self.user.__dict__)
+        self.assertTrue('created_at' in self.user.__dict__)
+        self.assertTrue('updated_at' in self.user.__dict__)
+        self.assertTrue('password' in self.user.__dict__)
+        self.assertTrue('first_name' in self.user.__dict__)
+        self.assertTrue('last_name' in self.user.__dict__)
+
+    def test_is_subclass_User(self):
+        """test if User is subclass of Basemodel"""
+        self.assertTrue(issubclass(self.user.__class__, BaseModel), True)
+
+    def test_attribute_types_User(self):
+        """test attribute type for User"""
+        self.assertEqual(type(self.user.email), str)
+        self.assertEqual(type(self.user.password), str)
+        self.assertEqual(type(self.user.first_name), str)
+        self.assertEqual(type(self.user.first_name), str)
+
+    def test_save_User(self):
+        """test if the save works"""
+        self.user.save()
+        self.assertNotEqual(self.user.created_at, self.user.updated_at)
+
+    def test_to_dict_User(self):
+        """test if dictionary works"""
+        self.assertEqual('to_dict' in dir(self.user), True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

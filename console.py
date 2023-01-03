@@ -89,7 +89,7 @@ class HBNBCommand(cmd.Cmd):
             val = all.keys()
             search = f"{arg[0]}.{arg[1]}"
             if (search not in all.keys()):
-                print("** class dosen't exist **")
+                print("** class doesn't exist **")
                 return
             del all[search]
             new.__objects = all
@@ -152,7 +152,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             if search not in all.keys():
-                print("** class doesn't exist **")
+                print("** no instance found **")
                 return
             obj = new_ins.all()
             for key, value in obj.items():

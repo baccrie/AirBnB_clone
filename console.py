@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
         elif len(arg) == 2:
             if arg[0] not in self.class_names:
-                print("** class dosen't exist **")
+                print("** class doesn't exist **")
                 return
             new = FileStorage()
             new.reload()

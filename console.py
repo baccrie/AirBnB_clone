@@ -106,6 +106,50 @@ class HBNBCommand(cmd.Cmd):
                 if type(value).__name__ == arg[0]:
                     print(value)
 
+    def do_reset(self, line):
+        """This method isnt part of the programme
+        its personal and the purpose is to delete
+        all object instances from the file"""
+        if line:
+            new = FileStorage()
+            new.reload()
+            all = new.all()
+            all = "{}"
+            new.__objects = all
+            new.save()
+
+    def do_update(self, line):
+        """Updates an instance based on the class
+        name and id by adding or updating attribut
+        save the change into the JSON file)"""
+        arg = line.split()
+
+        if (len(arg) > 1):
+            search = f"{arg[0]}.{arg[1]}"
+            new_ins = FileStorage()
+            new_ins.reload
+            all = new_ins.all()
+        if len(arg) == 0:
+            print("** class name missing **")
+        elif len(arg) == 1 and arg[0] not in self.class_names:
+            print("** class doesn't exist **")
+        elif len(arg) == 1 and arg[0] in self.class_names:
+            print("** instance id missing **")
+        elif len(arg) == 2 and search not in all:
+            print("** no instance found **")
+        elif len(arg) == 2:
+            print("** attribute name missing **")
+        elif len(arg) == 3:
+            print("** value missing **")
+        else:
+            obj = new_ins.all()
+            for key, value in obj.items():
+                if search == key:
+                    ar = f"{arg[2]}"
+                    value.ar = arg[3]
+            new_ins.__objects = obj
+            new_ins.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

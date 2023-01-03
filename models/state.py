@@ -1,13 +1,10 @@
 #!/usr/bin/python3
 """
-User creation class
+Class that defines a state
 """
 from models.base_model import BaseModel
 
 
-class User(BaseModel):
-    """Defines attributes for user creation"""
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
+class State(BaseModel):
+    """class to create a state"""
+    name = ""

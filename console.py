@@ -96,6 +96,9 @@ class HBNBCommand(cmd.Cmd):
             for key, value in all.items():
                 print(value)
         elif len(arg) == 1:
+            if arg[0] not in self.class_names:
+                print("** class doesn't exist **")
+                return
             for key, value in all.items():
                 if type(value).__name__ == arg[0]:
                     print(value)

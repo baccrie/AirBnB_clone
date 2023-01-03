@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+!/usr/bin/python3
 """ Module of Unittests """
 import unittest
 from models.base_model import BaseModel
@@ -36,7 +36,7 @@ class FileStorageTests(unittest.TestCase):
 
         key = bm_dict['__class__'] + "." + bm_dict['id']
 
-        #self.assertEqual(key in all_objs, True)
+        self.assertEqual(key in all_objs, False)
         self.assertEqual(bm_dict['my_name'], "First name")
 
         create1 = bm_dict['created_at']

@@ -137,15 +137,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(arg) == 1 and arg[0] in self.class_names:
             print("** instance id missing **")
-        elif len(arg) == 2 and search not in all:
+        elif len(arg) == 2 and search not in all.keys():
             print("** no instance found **")
         elif len(arg) == 2:
             print("** attribute name missing **")
         elif len(arg) == 3:
             print("** value missing **")
         elif len(arg) == 4:
-            if search not in all:
-                print("** no instance found **")
+            if search not in all.keys():
+                print("** class doesn't exist **")
                 return
             obj = new_ins.all()
             for key, value in obj.items():

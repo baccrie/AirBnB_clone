@@ -9,8 +9,21 @@ from datetime import datetime
 class BaseModel:
     """A Base model with three common attr"""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """an instance method"""
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == '__class__':
+                    pass
+                elif (key == 'created_at'):
+                    self.created_at = datetime.strptime
+                    (value, "%Y-%m-%dT%H:%M:%S.%f")
+                elif (key == 'updated_at'):
+                    self.updated_at = datetime.strptime
+                    (value, "%Y-%m-%dT%H:%M:%S.%f")
+                else:
+                    setattr(self, key, value)
+
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()

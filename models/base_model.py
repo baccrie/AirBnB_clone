@@ -13,7 +13,7 @@ class BaseModel:
         """an instance method"""
         if kwargs:
             for key, value in kwargs.items():
-                if key == '__class__':
+                if (key == '__class__'):
                     pass
                 elif (key == 'created_at'):
                     self.created_at = datetime.strptime
@@ -23,14 +23,14 @@ class BaseModel:
                     (value, "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     setattr(self, key, value)
-
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """A method that returns a str repr"""
-        ret_str = f"[{type(self).__name__}] ({self.id}) {self.id}"
+        ret_str = f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
         return (ret_str)
 
     def save(self):

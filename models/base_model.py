@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""A base modlue"""
+"""A base module that all other module inherits fron"""
 
 
 import uuid

@@ -4,13 +4,14 @@
 
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel:
     """A Base model with three common attr"""
 
     def __init__(self, *args, **kwargs):
-        """an instance method"""
+        """an constructor"""
         if kwargs:
             for key, value in kwargs.items():
                 if (key == '__class__'):
@@ -27,6 +28,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """A method that returns a str repr"""
@@ -35,6 +37,7 @@ class BaseModel:
 
     def save(self):
         """Saves an instance to a json file"""
+        models.storage.save()
         self.updated_at = datetime.now()
 
     def to_dict(self):

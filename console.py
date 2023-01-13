@@ -123,6 +123,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
             elif len(arg) == 4:
                 search = f"{arg[0]}.{arg[1]}"
+                if search not in storage.all().keys():
+                    print("** no instance found **")
                 for k, v in storage.all().items():
                     if search == k:
                         setattr(v, arg[2], (arg[3]))

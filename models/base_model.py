@@ -12,7 +12,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """an constructor"""
-        if kwargs:
+        if kwargs and kwargs != None:
             for key, value in kwargs.items():
                 if (key == '__class__'):
                     pass
@@ -37,8 +37,8 @@ class BaseModel:
 
     def save(self):
         """Saves an instance to a json file"""
-        models.storage.save()
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """converts the dict repr and returns it"""

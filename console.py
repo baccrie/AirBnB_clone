@@ -54,7 +54,7 @@ class HBNBCommand(cmd.Cmd):
             if arg[0] not in self.classes.keys():
                 print("** class doesn't exist **")
             elif len(arg) == 1:
-                print("* instance id missing **")
+                print("** instance id missing **")
             elif len(arg) == 2:
                 key = f"{arg[0]}.{arg[1]}"
                 if key not in storage.all().keys():

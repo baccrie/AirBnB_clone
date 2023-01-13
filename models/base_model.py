@@ -17,11 +17,11 @@ class BaseModel:
                 if (key == '__class__'):
                     pass
                 elif (key == 'created_at'):
-                    self.created_at = datetime.strptime
-                    (value, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.created_at = datetime.\
+                            strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 elif (key == 'updated_at'):
-                    self.updated_at = datetime.strptime
-                    (value, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.updated_at = datetime.\
+                            strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 else:
                     setattr(self, key, value)
         else:

@@ -12,7 +12,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """an constructor"""
-        if kwargs and kwargs != None:
+        if kwargs:
             for key, value in kwargs.items():
                 if (key == '__class__'):
                     pass

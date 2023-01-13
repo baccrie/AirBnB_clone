@@ -17,11 +17,11 @@ class HBNBCommand(cmd.Cmd):
         """Quits the console"""
         return True
 
-    def do_readline(self):
+    def emptyline(self):
         """a method that ensures that
         an empty line + ENTER
         shouldn’t execute anything"""
-        print()
+        pass
 
 
 if __name__ == '__main__':

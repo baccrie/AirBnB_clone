@@ -26,6 +26,10 @@ class HBNBCommand(cmd.Cmd):
             'Review': Review
             }
 
+    methods = ['all', 'show', 'count', 'update', 'destroy']
+    classe = [
+        'BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
+
     def do_quit(self, line):
         """Exits the console safely"""
         return True
@@ -141,6 +145,39 @@ class HBNBCommand(cmd.Cmd):
                     if search == k:
                         setattr(v, arg[2], (arg[3]))
                         v.save()
+
+    def precmd(self, line):
+        """A method that do hard things"""
+
+        if line == '' or not line.endswith(')'):
+            return line
+
+        flag = 1
+
+        for x in self.classe:
+            for y in self.methods:
+                if line.startswith("{}.{}(".format(x, y)):
+                    flag = 0
+        if flag:
+            return line
+
+        tmp = ''
+        for x in self.methods:
+            tmp = line.replace('(', '.').replace(')', '.').split('.')
+            if tmp[0] not in self.classe:
+                return ' '.join(tmp)
+            while tmp[-1] == '':
+                tmp.pop()
+            if len(tmp) < 2:
+                return line
+            if len(tmp) == 2:
+                tmp = '{} {}'.format(tmp[1], tmp[0])
+            else:
+                tmp = '{} {} {}'.format(tmp[1], tmp[0], tmp[2])
+            if tmp.startswith(x):
+                return tmp
+
+        return ''
 
 
 if __name__ == '__main__':
